@@ -255,6 +255,10 @@ class Valuable extends nElement {
     return this
   }
 
+  clear() {
+    return this.setValue('')
+  }
+
 }
 
 class nInputText extends Valuable {
