@@ -9,6 +9,82 @@
 </head>
 
 <body>
+  <div id="app"></div>
+
+  <script src="./js/nElement.js"></script>
+  <script>
+    const app = nElement.fromId('app')
+
+    const title = new nH1()
+    title.setText('Busy')
+    title.setStyle('text-align', 'center')
+    app.append(title)
+
+    const input = new nFlex()
+    app.append(input)
+
+    const inputText = new nInputText()
+    inputText.setStyle('box-shadow', '0rem 0rem 0rem calc(1rem / 16) #000000')
+    input.append(inputText)
+
+    const list = []
+
+    const inputButton = new nButton()
+    inputButton.setStyle('margin-left', '1rem')
+    inputButton.setText('Go!')
+    inputButton.on('click', () => {
+      const itemName = inputText.getValue()
+      inputText.clear()
+
+      const item = {
+        name: itemName,
+        on: true,
+        started: Date.now(),
+      }
+
+      const index = list.findIndex(({ name }) => name == itemName)
+      index === -1 ? list.push(item) : (list[index] = item)
+    })
+    input.append(inputButton)
+
+    const listEl = new nElement()
+    app.append(listEl)
+
+    const calcTime = (start, end) => Math.floor((start - end) / 1000).toString()
+
+    const renderList = () => {
+      const now = Date.now()
+
+      listEl.clear()
+
+      list.forEach((item, ix) => {
+        const itemEl = new nFlex()
+
+        const textEl = new nElement()
+        textEl.setText(item.name)
+        itemEl.append(textEl)
+
+        if (item.on) {
+          const timeEl = new nElement()
+          timeEl.setText(calcTime(now, item.started))
+          timeEl.on('click', () => list[ix].on = false)
+          itemEl.append(timeEl)
+        } else {
+          const buttonEl = new nButton()
+          buttonEl.setText('Start')
+          buttonEl.on('click', () => list[ix].on = true)
+          itemEl.append(buttonEl)
+        }
+
+        listEl.append(itemEl)
+      })
+
+      setTimeout(renderList, 1000)
+    }
+
+    renderList()
+
+  </script>
 </body>
 
 </html>
