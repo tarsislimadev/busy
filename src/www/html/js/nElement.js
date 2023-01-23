@@ -11,7 +11,7 @@ class nElement {
       tagName: 'div',
     },
     component: {
-      name: 'bug',
+      name: 'component',
     }
   }
 
@@ -38,17 +38,18 @@ class nElement {
       this.container.classList.add(`ct-${this.options.component.name}`)
     }
 
-    this.setStyle('margin', '0')
-    this.setStyle('padding', '0')
+    this.setStyle('box-sizing', 'border-box')
+    this.setStyle('font', 'inherit')
     this.setStyle('outline', 'none')
     this.setStyle('border', 'none')
-    this.setStyle('box-sizing', 'border-box')
+    this.setStyle('padding', '0')
+    this.setStyle('margin', '0')
   }
 
   static fromElement(el = document.createElement('')) {
-    const bug = new nElement()
-    bug.element = el
-    return bug
+    const component = new nElement()
+    component.element = el
+    return component
   }
 
   static fromId(id) {
@@ -273,6 +274,7 @@ class nInputText extends Valuable {
     this.setContainerStyle('display', 'inline-block')
     this.setContainerStyle('width', '100%')
 
+    this.setStyle('font-size', 'inherit')
     this.setStyle('padding', '0.5rem')
     this.setStyle('width', '100%')
   }

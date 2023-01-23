@@ -14,10 +14,12 @@
   <script src="./js/nElement.js"></script>
   <script>
     const app = nElement.fromId('app')
+    app.setStyle('font', 'monospace')
 
     const title = new nH1()
     title.setText('Busy')
     title.setStyle('text-align', 'center')
+    title.setStyle('margin-bottom', '1rem')
     app.append(title)
 
     const input = new nFlex()
@@ -29,8 +31,9 @@
 
     const list = []
 
-    const inputButton = new nButton()
+    const inputButton = new nElement()
     inputButton.setStyle('margin-left', '1rem')
+    inputButton.setStyle('padding', '0.5rem')
     inputButton.setText('Go!')
     inputButton.on('click', () => {
       const itemName = inputText.getValue()
@@ -62,6 +65,7 @@
 
         const textEl = new nElement()
         textEl.setText(item.name)
+        textEl.setStyle('padding', '0.5rem')
         itemEl.append(textEl)
 
         if (item.on) {
@@ -70,7 +74,7 @@
           timeEl.on('click', () => list[ix].on = false)
           itemEl.append(timeEl)
         } else {
-          const buttonEl = new nButton()
+          const buttonEl = new nElement()
           buttonEl.setText('Start')
           buttonEl.on('click', () => list[ix].on = true)
           itemEl.append(buttonEl)
