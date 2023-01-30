@@ -10,6 +10,7 @@ on:
 
 jobs:
   release:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,6 +26,6 @@ jobs:
         run: ls -la ./dist
 
       - name: Create release
-        run: gh release create v$( date +%Y%m%d%H%M ) ./dist/*.apk
+        run: gh release create v$( date +%Y%m%d%H%M ) ./dist/app-debug.apk 
         env:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
