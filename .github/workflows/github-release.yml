@@ -21,6 +21,9 @@ jobs:
       - name: Export app
         run: docker run -v $(pwd)/dist:/dist github-release cp -rfv /app/busy/platforms/android/app/build/outputs/apk/debug/app-debug.apk /dist
 
+      - name: List files
+        run: ls -la ./dist
+
       - name: Create release
         run: gh release create v$( date +%Y%m%d%H%M ) ./dist/*.apk
         env:
