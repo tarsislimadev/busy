@@ -4,6 +4,10 @@
 
 App to manage tasks.
 
+- [ ] Icon
+
+- [ ] Screenshots
+
 ## How to
 
 ### Production
