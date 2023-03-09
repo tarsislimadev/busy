@@ -55,22 +55,35 @@
 
     const calcTime = (start, end) => Math.floor((start - end) / 1000).toString()
 
+    const padString = (txt = '', alg = 1, pad = ' ') => {
+      while (txt.length < alg) txt = pad + txt
+      return txt
+    }
+
+    const textTime = (time = 0) => {
+      return [Math.floor(time / 60), time % 60]
+        .map(i => padString(i.toString(), 2, '0'))
+        .join(':')
+    }
+
     const renderList = () => {
       const now = Date.now()
 
       listEl.clear()
 
       list.forEach((item, ix) => {
+        if (!item.name) return
+
         const itemEl = new nFlex()
+        itemEl.setStyle('padding', '0.5rem 0rem')
 
         const textEl = new nElement()
         textEl.setText(item.name)
-        textEl.setStyle('padding', '0.5rem')
         itemEl.append(textEl)
 
         if (item.on) {
           const timeEl = new nElement()
-          timeEl.setText(calcTime(now, item.started))
+          timeEl.setText(textTime(calcTime(now, item.started)))
           timeEl.on('click', () => list[ix].on = false)
           itemEl.append(timeEl)
         } else {
