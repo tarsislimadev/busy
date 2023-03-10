@@ -242,6 +242,11 @@ class nLabel extends nElement {
 class Valuable extends nElement {
   maxlength = undefined
 
+  placeholder(value) {
+    this.element.placeholder = value
+    return this
+  }
+
   setMaxLength(value) {
     this.element.maxlength = this.maxlength = value
     return this
