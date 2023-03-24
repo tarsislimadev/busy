@@ -8,7 +8,12 @@ App to manage tasks.
 
 - [ ] Screenshots
 
-## How to
+## Android APK (development)
+
+```
+wget https://github.com/brtmvdl/busy/releases/download/latest/app-debug.apk \
+  --output-file=busy.apk
+```
 
 ### Production
 
