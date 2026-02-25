@@ -1,0 +1,9 @@
+{
+  "name": "busy",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "license": "MIT",
+  "type": "commonjs"
+}
